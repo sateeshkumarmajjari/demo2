@@ -221,6 +221,8 @@ dense_rank() over(order by salary) as dense_rank,
 row_number() over(order by salary) as rownumber
 from hr.employees
 
+hi  ima sateesh 
+kumar
 
 
 
