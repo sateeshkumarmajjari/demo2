@@ -1,0 +1,24 @@
+1.Create database "Tutorial"
+2.Create table "Employee" in above database.
+============================
+Field		Type
+============================
+employeeNumber	int
+lastName	varchar(50)
+firstName	varchar(50)
+MobileNumber	varchar(10)
+
+3. Add below Columns in "Employee" table.
+email		varchar(100)
+officeCode	varchar(10)
+reportsTo	int
+
+4. Insert 10 record in this table wherein employeeNumber should be 1 to 10. Other column may have any values.
+5. Update MobileNumber and email for employeeNumber 5,6 and 7.
+6. Delete record for employeeNumber 8,9 and 10.
+7. Modify column "email" to "emailId".
+8. Delete column "reportsTo".
+9. Rename table "Employee" to "EmployeeDetails"
+10.Delete all record from table "EmployeeDetails"
+11.Truncate table "EmployeeDetails".
+12. Drop table "EmployeeDetails".

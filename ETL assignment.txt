@@ -1,0 +1,242 @@
+1)
+select employee_id,
+first_name,
+last_name,
+email,
+phone_number,
+round((sysdate-hire_date)/365,0)as experience,
+job_id,
+salary + nullvalue(commission_pct,0) as total_salary,
+manager_id,
+department_id
+from HR.Employees;
+
+minus 
+
+select employee_id,first_name,last_name,email,phone_number,experience,job_id,
+total_salary,manager_id,department_id from emp_totalsal_trg
+
+union
+
+select employee_id,first_name,last_name,email,phone_number,experience,job_id,
+total_salary,manager_id,department_id from emp_totalsal_trg
+
+minus
+
+select employee_id,
+first_name,
+last_name,
+email,
+phone_number,
+round((sysdate-hire_date)/365,0)as experience,
+job_id,
+salary + nullvalue(commission_pct,0) as total_salary,
+manager_id,
+department_id
+from HR.Employees;
+
+2)
+select department_id , sum(salary)
+from HR.employees
+group by department_id;
+
+minus
+
+select department_id,total_salary from sum_sal_depwise_trg
+
+union
+
+select department_id,total_salary from sum_sal_depwise_trg
+
+minus
+
+select department_id , sum(salary)
+from HR.employees
+group by department_id;
+
+3)
+select employee_id,
+first_name,
+last_name,
+email,
+phone_number,
+hire_date,
+job_id,
+salary,
+commission_pct,
+manages_id,
+department_id
+from HR.Employees where Department_id = 10;
+
+minus
+
+
+select employee_id,first_name,last_name,email,phone_number,hiredate,
+job_id,salary,commision_pct,manager_id,department_id from emp_dept_trg
+
+union
+
+
+select employee_id,first_name,last_name,email,phone_number,hiredate,
+job_id,salary,commision_pct,manager_id,department_id from emp_dept_trg
+ 
+minus
+
+select employee_id,
+first_name,
+last_name,
+email,
+phone_number,
+hire_date,
+job_id,
+salary,
+commission_pct,
+manages_id,
+department_id
+from HR.Employees where Department_id = 10;
+
+
+
+4)
+select e.employee_id,
+e.first_name,
+e.last_name,
+e.email,
+e.phone_number,
+e.hire_date,
+e.job_id,
+e.salary,
+e.commission_pct,
+e.manager_id,
+e.department_id,
+d.department_name
+from hr.employees e,
+HR.departments d where e.department_id=d.department_id;
+
+minus
+
+
+select employee_id,first_name,last_name,email,phone_number,hiredate,
+job_id,salary,commision_pct,manager_id,department_id,department_name from emp_deptname_trg
+
+union
+
+
+select employee_id,first_name,last_name,email,phone_number,hiredate,
+job_id,salary,commision_pct,manager_id,department_id,department_name from emp_deptname_trg
+
+
+minus
+
+select e.employee_id,
+e.first_name,
+e.last_name,
+e.email,
+e.phone_number,
+e.hire_date,
+e.job_id,
+e.salary,
+e.commission_pct,
+e.manager_id,
+e.department_id,
+d.department_name
+from hr.employees e,
+HR.departments d where e.department_id=d.department_id;
+
+5)
+select count(*) as num_of_employees,
+max(salary) as maxsal,
+min(salary) as minsal,
+avg(salary) as avgsal,
+department_id
+from hr.employees group by department_id;
+
+minus 
+
+select num_of_employees,maxsal,minsal,avgsal,department_id from emp_count_sal_depwise_trg 
+
+union  
+
+select num_of_employees,maxsal,minsal,avgsal,department_id from emp_count_sal_depwise_trg 
+
+minus
+
+select count(*) as num_of_employees,
+max(salary) as maxsal,
+min(salary) as minsal,
+avg(salary) as avgsal,
+department_id
+from hr.employees group by department_id;
+
+
+6)
+select e1.employee_id,
+e1.first_name,
+e2.first_name as manager_name
+from hr.employees e1,
+hr.employees e2,
+where e1.manager_id = e2.employee_id;
+
+minus
+
+select employee_id,first_Name,manager_Name from emp_manager_trg
+
+union
+
+select employee_id,first_Name,manager_Name from emp_manager_trg
+
+minus
+
+select e1.employee_id,
+e1.first_name,
+e2.first_name as manager_name
+from hr.employees e1,
+hr.employees e2,
+where e1.manager_id = e2.employee_id;
+
+7)
+select employee_id,
+first_name,
+salary,
+rank()  over(order by salary) as rank,
+dense_rank() over(order by salary) as dense_rank,
+row_number() over(order by salary) as rownumber
+from hr.employees
+
+minus
+
+select employee_id,first_Name,salary,rank,dense_rank,rownumber from emp_sal_ranks_trg
+
+union
+
+select employee_id,first_Name,salary,rank,dense_rank,rownumber from emp_sal_ranks_trg
+
+minus
+
+select employee_id,
+first_name,
+salary,
+rank()  over(order by salary) as rank,
+dense_rank() over(order by salary) as dense_rank,
+row_number() over(order by salary) as rownumber
+from hr.employees
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

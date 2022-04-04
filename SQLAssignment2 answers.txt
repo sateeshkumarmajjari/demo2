@@ -1,0 +1,37 @@
+•	Fetch Details of Employees with emails contains text “dmurphy”
+
+a)select * from employees where email like '%dmurphy%';
+
+
+•	Find names of employee ending with letter ‘s’
+
+a)select * from employees where lastname like'%s';
+
+•	Print employee details whose first name ends with ‘i’ and contains 7 alphabets 
+
+a)select * from employees where right(firstname,1)='i'  and length(firstname)>=7;
+
+•	Print details of employees whose salary lies between 10000 and 50000
+
+a)select * from employees where salary between 10000 and 50000;
+
+•	Fetch all employees who are not having the manager
+
+a)select * from employees where reportsTo is null;
+
+•	Fetch all employees whose first name starts with ‘e’ and are at least 3 characters in length
+
+a)select * from employees where left(firstname, 1)='p' and length(firstname)>=3;
+
+•	Fetch all employees whose first name starts with ‘a’ and Last names consists of minimum 3 characters
+
+a)select * from employees where left(firstname, 1)='a' and length(lastname)>=3;
+
+•	Fetch all employee name whose last name does not starts with ‘a’
+
+a)select * from employees where left(lastname, 1) !='a%';
+
+•	List all the emps who does not have Job as  ‘PRESIDENT’ & ‘MGR” in asc order of Salaries.
+
+a)select * from employees where jobTitle not in('president','MGR')
+order by salary Asc;

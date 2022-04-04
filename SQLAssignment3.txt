@@ -1,0 +1,51 @@
+Prerequisite for below questions; Create database "SqlLearning" and all tables should be created inside this database.
+
+1.Create table "Employee" as per below structure with primary key. Primary key Column could be either "employeeId" or "age".
+2.Create table "EmployeeDetails" as per below structure. After creating table, add primary key which include both Columns "employeeId" and "age".
+============================
+Field		Type
+============================
+employeeId	int
+firstName	varchar(20)
+lastName	varchar(20)
+age		int
+
+3. Create table "Department" as per below structure with primary key column "deptId".
+4. Add FOREIGN KEY into table "Department" with column "employeeId". Add reference table "Employee" with column "employeeId"(refer question1)
+============================
+Field		Type
+============================
+deptId	int
+deptName	varchar(20)
+city		varchar(20)
+employeeId	int
+
+5. Insert 5 record into table "Employee" with employeeId 1 to 5. Insert 5 record into table "Department" with deptId 1 to 5.
+6. Delete record from table "Employee" for employeeId 1 and 2.
+7. Insert 5 record into table "EmployeeDetails" with employeeId=1 for every record. Drop FOREIGN KEY from table "EmployeeDetails".
+8. Create below 3 tables and insert records accordingly.
+9. Join below 3 tables using INNER JOINS
+10.Join tables "posts" and table "tags" using LEFT OUTER JOIN . Then join previous query with table "metadata" using RIGHT OUTER JOIN.
+
+Table1:"posts"
+-------------------------------------------
+id	title			reg_date	
+===	=================	===========
+1	Book1			2021-12-01
+2	Book2			2021-12-02
+
+
+Table2:"tags"
+-----------------
+id	name
+===	=========
+1	English
+2	Hindi
+
+
+Table3:"metadata"
+---------------------
+post_id		tag_id
+=======		=======
+1		2
+2		1

@@ -1,0 +1,88 @@
+create database SqlLearning;
+use SqlLearning;
+
+drop table Employee;
+create table Employee(
+employeeId int,
+firstName varchar(20),
+lastName varchar(20),
+age int,
+primary key(employeeId));
+
+create table EmployeeDetails(
+employeeId int,
+firstName varchar(20),
+lastName varchar(20),
+age int,
+primary key(employeeId,age));
+show create table employeeDetails;
+
+
+
+create table Department(
+ depid int,
+ departmentname varchar(20),
+ city varchar(20),
+ PRIMARY KEY(depid),
+ employeeId int);
+ alter table Department add FOREIGN KEY(employeeId) references employee(employeeId);
+ insert into employee values(1,'satish','k',28);
+ insert into employee values(2,'karthik','t',29);
+ insert into employee values(3,'madhan','g',26);
+ insert into employee values(4,'prudhvi','c',25);
+ insert into employee values(5,'ganesh','p',24);
+ insert into Department values(1,'testing','hyd',1);
+ insert into Department values(2,'development','bng',2);
+ insert into Department values(3,'associate','hyd',3);
+ insert into Department values(4,'marketing','hyd',4);
+ insert into Department values(5,'techlead','pune',5);
+ select * from employee;
+  select * from Department;
+  Delete from employee where employeeId in (1,2);
+ insert into EmployeeDetails values(1,'satish','k',28);
+ insert into EmployeeDetails values(1,'karthik','t',29);
+ insert into EmployeeDetails values(1,'madhan','g',26);
+ insert into EmployeeDetails values(1,'prudhvi','c',25);
+ insert into EmployeeDetails values(1,'ganesh','p',24);
+  select * from EmployeeDetails;
+  alter table Department drop foreign key department_ibfk_1;
+  show create table Department;
+  CREATE TABLE `department` (
+   `depid` int NOT NULL,
+   `departmentname` varchar(20) DEFAULT NULL,
+   `city` varchar(20) DEFAULT NULL,
+   `employeeId` int DEFAULT NULL,
+   PRIMARY KEY (`depid`),
+   KEY `employeeId` (`employeeId`),
+   CONSTRAINT `department_ibfk_1` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  
+  
+ 
+  
+  
+  
+create table posts(id int primary key,title varchar(50),reg_date date);
+select * from posts;
+insert into posts values(1,'Book1','2021-12-01');
+insert into posts values (2,'Book2','2021-12-02');
+
+
+
+create table tags(id int primary key,name varchar(50));
+insert into tags values(1,'English'),(2,'Hindi');
+
+
+
+create table metadata(post_id int,tag_id int,foreign key(post_id) references posts(id), foreign key(tag_id) references tags(id));
+insert into metadata values(1,2),(2,1);
+
+select posts.title,tags.name,metadata.tag_id,metadata.post_id from metadata inner join posts on posts.id=metadata.post_id
+inner join tags on tags.id=metadata.tag_id;
+
+
+select * from tags left join metadata on tags.id=metadata.tag_id
+left join posts on posts.id=metadata.post_id;
+
+select * from tags right join metadata on tags.id=metadata.tag_id
+right join posts on posts.id=metadata.post_id;

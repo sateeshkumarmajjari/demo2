@@ -1,0 +1,45 @@
+create database tutorial;
+use tutorial;
+create table employee(
+employeeNumber int,
+lastname varchar(50),
+firstname varchar(50),
+Mobilenumber varchar(10));
+alter table employee add(
+email varchar(20),
+officecode varchar(10),
+reportsTo int);
+select * from employee;
+insert into employee values(1,'virat','kohli','9292939','virat@gmail.com','vkgdujj',1234);
+insert into employee values(2,'rohit','sharma','9292938','rohit@gmail.com','rsgdujj',2345);
+insert into employee values(3,'mahendra','dhoni','9292937','dhoni@gmail.com','mdgdujj',3456);
+insert into employee values(4,'kl','rahul','9292936','kl@gmail.com','krgdujj',4567);
+insert into employee values(5,'dinesh','karthik','9292935','dines@gmail.com','dkgdujj',5678);
+insert into employee values(6,'hardik','pandya','9292934','hardik@gmail.com','hpgdujj',6789);
+insert into employee values(7,'rishab','panth','9292933','panth@gmail.com','rpgdujj',7890);
+insert into employee values(8,'ravindra','jadeja','9292932','jadeja@gmail.com','rjgdujj',8901);
+insert into employee values(9,'jasprit','bumra','9292931','bumra@gmail.com','jbgdujj',9012);
+insert into employee values(10,'axar','patel','92929390','axar@gmail.com','apgdujj',0123);
+select * from employee;
+
+update employeedetails set email='satish@gmail.com',Mobilenumber='2345678' where employeeNumber=5;
+update employeedetails set email='kiran@gmail.com',Mobilenumber='3345689' where employeeNumber=6;
+update employeedetails set email='satish@gmail.com',Mobilenumber='4345668' where employeeNumber=5;
+
+
+delete from employeedetails where employeeNumber in(8,9,10);
+
+alter table employee rename column email TO emailid;
+
+alter table employee drop column reportsTo;
+
+alter table employee rename to employeedetails;
+
+delete from employeedetails;
+truncate table employeedetails;
+drop table employeedetails;
+
+
+
+
+
